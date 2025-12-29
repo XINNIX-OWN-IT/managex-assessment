@@ -343,6 +343,22 @@
 
     /* Small helper */
     .rowBetween{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+    /* Footer logo */
+.footer-logo {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(234,241,255,.10);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo img {
+  width: 180px; /* medium size */
+  max-width: 80%;
+  opacity: 0.9;
+}
+
   </style>
 </head>
 
@@ -853,6 +869,1002 @@
               <div class="spinner"></div>
               <div class="muted">Preparing your ${escapeHtml(area.title)} profile</div>
             </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leadership Clarity Assessment</title>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;600;700&display=swap");
+
+    :root{
+      /* XINNIX brand colors */
+      --brand-blue:#003366;
+      --brand-light-blue:#458BCA;
+      --brand-yellow:#FDBA12;
+      --brand-light-orange:#F7901C;
+      --brand-orange:#F26921;
+      --brand-grey:#737373;
+
+      /* UI */
+      --bg:#071423;
+      --card:rgba(10, 20, 36, .72);
+      --card2:rgba(10, 20, 36, .86);
+      --text:#EAF1FF;
+      --muted:rgba(234,241,255,.68);
+      --border:rgba(69,139,202,.22);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+
+      --accent: var(--brand-light-blue);
+      --accent2: var(--brand-yellow);
+      --good:#34d399;
+      --warn:#FDBA12;
+      --bad:#F26921;
+
+      --radius:18px;
+      --radius2:26px;
+      --max: 980px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Lato, Calibri, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1100px 700px at 15% 5%, rgba(69,139,202,.14), transparent 60%),
+        radial-gradient(1000px 600px at 85% 8%, rgba(242,105,33,.10), transparent 60%),
+        radial-gradient(900px 520px at 55% 120%, rgba(253,186,18,.12), transparent 60%),
+        linear-gradient(180deg, #06101C, #040B14 60%, #030812);
+      color:var(--text);
+      line-height:1.45;
+    }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:24px 16px 56px;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      letter-spacing:.2px;
+      font-family:Poppins, Lato, system-ui;
+    }
+    .dot{
+      width:12px;height:12px;border-radius:999px;
+      background:linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 4px rgba(69,139,202,.12);
+      flex:0 0 auto;
+    }
+
+    .pill{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--border);
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(10,20,36,.55);
+      white-space:nowrap;
+    }
+
+    .card{
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:var(--radius2);
+      padding:22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    h1,h2,h3{
+      margin:0 0 10px;
+      font-family:Poppins, Lato, system-ui;
+      letter-spacing:-.2px;
+    }
+    h1{font-size:34px; line-height:1.1}
+    h2{font-size:22px}
+    h3{font-size:16px; color:rgba(234,241,255,.85)}
+    p{margin:0 0 12px; color:rgba(234,241,255,.9)}
+    .muted{color:var(--muted)}
+
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    button, .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background:rgba(2, 10, 22, .55);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      cursor:pointer;
+      font-weight:700;
+      font-family:Poppins, Lato, system-ui;
+      transition: transform .06s ease, border-color .15s ease, background .15s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      user-select:none;
+    }
+    button:hover, .btn:hover{
+      border-color:rgba(69,139,202,.55);
+      background:rgba(69,139,202,.08);
+    }
+    button:active, .btn:active{transform:translateY(1px)}
+    .primary{
+      border-color:rgba(69,139,202,.70);
+      background:linear-gradient(135deg, rgba(69,139,202,.20), rgba(253,186,18,.12));
+    }
+    .ghost{
+      background:transparent;
+    }
+    .disabled{
+      opacity:.45;
+      pointer-events:none;
+    }
+
+    .grid{
+      display:grid;
+      gap:16px;
+    }
+
+    /* Page: pick area tiles */
+    .tiles{
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width: 980px){
+      .tiles{grid-template-columns: repeat(2, minmax(0, 1fr));}
+    }
+    @media (max-width: 520px){
+      .tiles{grid-template-columns: 1fr;}
+    }
+
+    .tile{
+      border:1px solid var(--border);
+      background:rgba(2, 10, 22, .50);
+      border-radius:18px;
+      padding:14px 14px 12px;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .15s ease, background .15s ease;
+      min-height:112px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .tile:hover{
+      border-color:rgba(69,139,202,.60);
+      background:rgba(69,139,202,.08);
+      transform: translateY(-1px);
+    }
+    .tile .title{
+      font-family:Poppins, Lato, system-ui;
+      font-weight:700;
+      font-size:16px;
+      line-height:1.15;
+      margin:0;
+      color:rgba(234,241,255,.95);
+      text-align:center;
+    }
+    .tile .desc{
+      margin:0;
+      color:rgba(234,241,255,.70);
+      font-size:13px;
+      line-height:1.25;
+      text-align:center;
+    }
+
+    /* Question view */
+    .topline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .progress{
+      height:8px;
+      width:100%;
+      border-radius:999px;
+      background:rgba(234,241,255,.10);
+      overflow:hidden;
+      border:1px solid rgba(234,241,255,.10);
+      margin:10px 0 16px;
+    }
+    .bar{
+      height:100%;
+      width:0%;
+      background:linear-gradient(90deg, rgba(69,139,202,.95), rgba(253,186,18,.85));
+      border-radius:999px;
+      transition: width .25s ease;
+    }
+
+    .choices{
+      display:grid;
+      gap:10px;
+      margin-top:12px;
+    }
+    .choice{
+      border:1px solid rgba(234,241,255,.12);
+      background:rgba(2, 10, 22, .44);
+      border-radius:16px;
+      padding:14px;
+      cursor:pointer;
+      transition: border-color .15s ease, background .15s ease, transform .06s ease;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      min-height:64px;
+    }
+    .choice:hover{
+      border-color:rgba(69,139,202,.55);
+      background:rgba(69,139,202,.08);
+    }
+    .choice.selected{
+      border-color:rgba(69,139,202,.85);
+      background:linear-gradient(135deg, rgba(69,139,202,.18), rgba(253,186,18,.10));
+    }
+    .choice .label{
+      font-family:Poppins, Lato, system-ui;
+      font-weight:700;
+      margin:0;
+      font-size:15px;
+    }
+    .choice .points{
+      color:rgba(234,241,255,.66);
+      font-size:12px;
+      white-space:nowrap;
+      padding-top:3px;
+    }
+
+    /* Results */
+    .resultHeadline{
+      font-size:30px;
+      line-height:1.12;
+      margin-bottom:8px;
+    }
+    .divider{
+      height:1px;
+      background:rgba(234,241,255,.10);
+      margin:16px 0;
+    }
+
+    .callout{
+      border:1px solid rgba(69,139,202,.30);
+      background:rgba(69,139,202,.10);
+      border-radius:18px;
+      padding:16px;
+      margin:12px 0 10px;
+    }
+    .callout h3{margin:0 0 6px}
+    .callout p{margin:0}
+
+    .roadmap{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width: 860px){
+      .roadmap{grid-template-columns: 1fr;}
+    }
+    .step{
+      border:1px solid rgba(234,241,255,.12);
+      background:rgba(2, 10, 22, .42);
+      border-radius:18px;
+      padding:14px 14px 12px;
+    }
+    .step .kicker{
+      font-family:Poppins, Lato, system-ui;
+      font-weight:700;
+      font-size:16px;
+      margin:0 0 6px;
+    }
+    .step .copy{
+      margin:0 0 8px;
+      color:rgba(234,241,255,.78);
+      font-size:13px;
+      line-height:1.3;
+    }
+    .step .example{
+      margin:0;
+      color:rgba(234,241,255,.86);
+      font-size:13px;
+      line-height:1.35;
+      font-style:italic;
+      border-left:3px solid rgba(253,186,18,.65);
+      padding-left:10px;
+    }
+
+    /* Loading screen */
+    .center{
+      text-align:left;
+    }
+    .spinnerRow{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:12px;
+    }
+    .spinner{
+      width:18px;height:18px;border-radius:999px;
+      border:2px solid rgba(234,241,255,.18);
+      border-top-color: rgba(69,139,202,.95);
+      animation: spin .9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg);} }
+
+    /* Small helper */
+    .rowBetween{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+
+    /* Footer logo */
+    .footer-logo {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(234,241,255,.10);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      width: 180px; /* medium size */
+      max-width: 80%;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Leadership Clarity Assessment</span>
+      </div>
+      <div class="pill" id="topPill">Results are private.</div>
+    </header>
+
+    <main id="app"></main>
+  </div>
+
+  <script>
+    (function(){
+      const app = document.getElementById("app");
+
+      const AREAS = [
+        {
+          id: "communication",
+          title: "Communication",
+          desc: "Clarity, confidence, and being heard.",
+          questions: [
+            "I assume people understand my expectations the first time I say them.",
+            "I often repeat myself because follow-through is inconsistent.",
+            "I avoid being direct because I do not want to sound harsh.",
+            "When things go sideways, I realize key details were never confirmed.",
+            "I do not have a consistent way to run 1:1s or check-ins.",
+            "I struggle to give feedback in a way that lands without defensiveness.",
+            "I end conversations hoping it will work out instead of confirming next steps."
+          ],
+          results: {
+            low: {
+              headline: "Your communication is clear. Your system can be tighter.",
+              happening: "You are already direct enough to create clarity. The opportunity is consistency: making expectations, check-ins, and follow-through repeatable so you do not have to re-explain everything.",
+              exhausting: "It gets tiring when clarity depends on you being present in every moment. A tighter system lets your team carry the message without you.",
+              cost: "The hidden cost is slow execution: people wait for clarification instead of moving with confidence."
+            },
+            mid: {
+              headline: "You are clear, but you are not always believed the first time.",
+              happening: "You likely communicate well, but expectations are not sticking. That usually means there is no shared cadence for priorities, follow-up, and confirmation.",
+              exhausting: "It feels exhausting because you are doing two jobs: leading and re-translating. You end up repeating what should have been understood.",
+              cost: "The hidden cost is lost momentum and a team that becomes dependent on reminders."
+            },
+            high: {
+              headline: "You are carrying clarity for everyone.",
+              happening: "You are probably explaining, re-explaining, and filling gaps that a team system should handle. This can come from avoiding directness, unclear expectations, or inconsistent follow-up.",
+              exhausting: "It is exhausting because you become the only source of truth. That creates bottlenecks and constant mental load.",
+              cost: "The hidden cost is confusion and missed commitments that look like attitude problems but are often clarity problems."
+            }
+          },
+          quickFix: {
+            shift: "Shift from explaining more to confirming better.",
+            thought: "Ask: \"What are the next two steps, who owns each, and when will it be done?\"",
+            why: "This removes guesswork. When people say it back in their own words, alignment happens instantly. You stop carrying clarity in your head and start building it into the conversation."
+          },
+          roadmap: {
+            awareness: {
+              copy: "Notice where you talk to feel finished instead of confirming what will happen next.",
+              example: "\"Before we wrap, tell me what you are doing next and when I will see it.\""
+            },
+            structure: {
+              copy: "Create a simple check-in rhythm and a definition of done for common tasks.",
+              example: "\"Every Monday we set priorities, every Thursday we review progress, and we close the loop on Friday.\""
+            },
+            consistency: {
+              copy: "Use the same format for expectations and feedback so your team does not have to guess.",
+              example: "\"Here is the outcome, here is the deadline, and here is how we will measure success.\""
+            }
+          }
+        },
+
+        {
+          id: "conflict",
+          title: "Conflict Resolution",
+          desc: "Hard conversations without avoidance or escalation.",
+          questions: [
+            "I delay addressing conflict longer than I should.",
+            "I often step in to calm things down instead of letting the team work it out.",
+            "I worry that direct feedback will damage the relationship.",
+            "I replay conversations in my head before I have them.",
+            "I take on emotional weight that is not actually mine to carry.",
+            "People bring me tension that they should handle directly.",
+            "After conflict, I do not always close the loop with clear agreements."
+          ],
+          results: {
+            low: {
+              headline: "You face conflict. Now you can make it lighter.",
+              happening: "You likely handle tension without avoiding it. Your opportunity is making conflict resolution a shared skill on the team, not something that depends on you.",
+              exhausting: "It can still feel heavy when you are the default mediator. Even strong leaders get tired when they become the system for resolution.",
+              cost: "The hidden cost is a team that waits for you to validate the conversation instead of owning it."
+            },
+            mid: {
+              headline: "You do not avoid conflict. You carry it.",
+              happening: "You likely handle issues, but you absorb the emotional weight and end up being the system for conflict resolution.",
+              exhausting: "That becomes exhausting because you are the shock absorber for tension across the team.",
+              cost: "The cost is fatigue, and eventually a team that waits for you to step in."
+            },
+            high: {
+              headline: "Conflict is draining you because you are trying to prevent fallout.",
+              happening: "You are probably delaying, softening, or carrying issues to avoid escalation. That makes you responsible for outcomes you cannot fully control.",
+              exhausting: "It is exhausting because you are managing emotions, not just performance. That creates constant mental load and avoidance pressure.",
+              cost: "The hidden cost is resentment and slow erosion of standards because issues stay unresolved."
+            }
+          },
+          quickFix: {
+            shift: "Move from fixer to coach: frame the conversation instead of carrying the outcome.",
+            thought: "Ask: \"What conversation needs to happen, and what is your first sentence going to be?\"",
+            why: "This turns conflict into a skill your team can practice. When you coach the start of the conversation, you stop becoming the middle of it. That reduces fatigue, builds ownership, and trains people to resolve tension without you."
+          },
+          roadmap: {
+            awareness: {
+              copy: "Notice where you take ownership of conflicts that are not yours to own.",
+              example: "\"I am stepping in because it feels uncomfortable, not because it is mine to solve.\""
+            },
+            structure: {
+              copy: "Create a team standard for handling tension early, with clear escalation rules.",
+              example: "\"If it involves you and them, you handle it first. If it stays stuck, we escalate with context and options.\""
+            },
+            consistency: {
+              copy: "Build conflict capability in the team so you lead the system, not every situation.",
+              example: "\"What do you want? What do you think they want? What is the next respectful step?\""
+            }
+          }
+        },
+
+        {
+          id: "alignment",
+          title: "Team Alignment",
+          desc: "Direction, priorities, and moving as one.",
+          questions: [
+            "My team is busy, but outcomes feel inconsistent.",
+            "People are unclear on what matters most right now.",
+            "Priorities change and it creates confusion or frustration.",
+            "I assume alignment exists because we talked about it once.",
+            "We do not have a simple scoreboard that the team checks regularly.",
+            "Different people interpret goals differently.",
+            "I spend too much time correcting course midstream."
+          ],
+          results: {
+            low: {
+              headline: "Your direction is strong. Now build a shared scoreboard.",
+              happening: "You likely set direction well. The biggest upgrade is tightening the team rhythm so alignment stays alive between meetings.",
+              exhausting: "It gets tiring when you have to remind people what matters. A simple scoreboard reduces reminders and increases ownership.",
+              cost: "The hidden cost is wasted effort: people work hard on the wrong things."
+            },
+            mid: {
+              headline: "Your team is moving. They are not always moving together.",
+              happening: "You probably have clear goals, but the team lacks a shared cadence to revisit priorities, track progress, and course-correct early.",
+              exhausting: "It is exhausting because you keep re-aiming the ship instead of letting the team self-correct.",
+              cost: "The hidden cost is friction and missed deadlines caused by misaligned assumptions."
+            },
+            high: {
+              headline: "Alignment is breaking down because the rhythm is unclear.",
+              happening: "You may be changing priorities often, or you may not have a consistent system for goals, roles, and progress checks. That creates drift.",
+              exhausting: "It is exhausting because you are constantly re-aligning people instead of leading forward.",
+              cost: "The hidden cost is morale. People stop trusting priorities when they feel unstable."
+            }
+          },
+          quickFix: {
+            shift: "Shift from explaining priorities to repeating a simple scoreboard.",
+            thought: "Ask: \"What are the top three outcomes this week, and what does done look like?\"",
+            why: "A scoreboard turns alignment into a shared reference point. It reduces debate, speeds execution, and creates confidence because everyone knows what winning looks like this week."
+          },
+          roadmap: {
+            awareness: {
+              copy: "Notice where you assume alignment instead of checking it.",
+              example: "\"If I asked three people right now, would they name the same top priority?\""
+            },
+            structure: {
+              copy: "Run a short weekly alignment cadence with clear outcomes and owners.",
+              example: "\"Here are the three outcomes. Here are the owners. Here is how we will measure progress.\""
+            },
+            consistency: {
+              copy: "Use the same language and scoreboard every week so alignment becomes automatic.",
+              example: "\"Wins, blockers, next actions. Same format every time.\""
+            }
+          }
+        },
+
+        {
+          id: "delegation",
+          title: "Delegation",
+          desc: "Letting go without losing quality.",
+          questions: [
+            "I keep tasks because it is faster than teaching someone else.",
+            "I worry the outcome will not meet the standard if I delegate it.",
+            "I assign tasks but do not always define what done looks like.",
+            "I jump in late when quality is off instead of coaching early.",
+            "I do not have clear levels of ownership for decisions.",
+            "I end up being the bottleneck for approvals.",
+            "My team waits for my direction more than they should."
+          ],
+          results: {
+            low: {
+              headline: "You delegate well. Now remove the approval bottlenecks.",
+              happening: "You likely give ownership. The upgrade is clarifying decision rights so your team can move faster without needing constant sign-off.",
+              exhausting: "It gets tiring when your calendar becomes the workflow. Decision clarity creates speed and calm.",
+              cost: "The hidden cost is slow execution and missed opportunities caused by waiting."
+            },
+            mid: {
+              headline: "You delegate tasks. You still own the outcome alone.",
+              happening: "You likely assign work, but ownership is not fully transferred. That usually means unclear standards, unclear decision rights, or late coaching.",
+              exhausting: "It is exhausting because you are still mentally holding every deliverable.",
+              cost: "The hidden cost is a team that performs below capacity because they do not feel trusted to own it."
+            },
+            high: {
+              headline: "Delegation is hard because you do not trust the process yet.",
+              happening: "You may be holding work because standards are high and you fear rework. Without clear definition of done and early checkpoints, delegation feels risky.",
+              exhausting: "It is exhausting because you are both the worker and the quality control department.",
+              cost: "The hidden cost is burnout and a team that never grows into ownership."
+            }
+          },
+          quickFix: {
+            shift: "Shift from delegating tasks to delegating ownership with guardrails.",
+            thought: "Ask: \"What does success look like, and what is the first checkpoint before it is too late?\"",
+            why: "Guardrails reduce rework. Early checkpoints protect quality while still giving your team room to own the work. This builds trust on both sides and removes you as the bottleneck."
+          },
+          roadmap: {
+            awareness: {
+              copy: "Notice where you keep work to avoid discomfort, not because it is truly faster.",
+              example: "\"I am keeping this because I do not want to risk a miss, not because I cannot teach it.\""
+            },
+            structure: {
+              copy: "Define done, checkpoints, and decision rights before work starts.",
+              example: "\"Bring me options, not problems. Decide up to X. Escalate above X.\""
+            },
+            consistency: {
+              copy: "Use the same delegation format each time until the team internalizes it.",
+              example: "\"Outcome, constraints, deadline, checkpoint, owner. Every time.\""
+            }
+          }
+        },
+
+        {
+          id: "motivation",
+          title: "Motivation",
+          desc: "Engagement, accountability, and energy.",
+          questions: [
+            "I feel like I am always the one trying to keep energy up.",
+            "My team needs reminders to do what they already know to do.",
+            "I struggle to hold people accountable without feeling like the bad guy.",
+            "I do not always know what motivates each person.",
+            "I avoid tough accountability because it feels personal.",
+            "Wins are not celebrated consistently, so effort feels invisible.",
+            "I am not sure how to re-engage someone who has checked out."
+          ],
+          results: {
+            low: {
+              headline: "Your team is engaged. Now keep the energy sustainable.",
+              happening: "You likely build motivation well. The upgrade is creating a repeatable system for recognition, accountability, and ownership so you are not the fuel source.",
+              exhausting: "It is tiring when motivation depends on your mood and presence. Systems make energy consistent.",
+              cost: "The hidden cost is drift: motivation fades when there is no rhythm of wins and standards."
+            },
+            mid: {
+              headline: "You are motivating people, but it is costing you energy.",
+              happening: "You may be carrying too much of the emotional and accountability load. Motivation becomes sustainable when standards and wins are visible and consistent.",
+              exhausting: "It feels exhausting because you are trying to inspire and enforce at the same time, without a simple system.",
+              cost: "The hidden cost is resentment: you start feeling like you care more than they do."
+            },
+            high: {
+              headline: "Motivation is slipping because accountability is unclear.",
+              happening: "You may be avoiding direct accountability, or you may not have clear standards and consequences. Without clarity, motivation becomes a guessing game.",
+              exhausting: "It is exhausting because you keep trying to lift energy instead of building ownership.",
+              cost: "The hidden cost is culture. When standards slip, high performers get frustrated and low performers get comfortable."
+            }
+          },
+          quickFix: {
+            shift: "Shift from inspiring more to making expectations visible and owned.",
+            thought: "Ask: \"What does winning look like this week, and what will you deliver by Friday?\"",
+            why: "When expectations are visible, accountability feels fair instead of personal. This creates energy because people know what success looks like and how to earn a win."
+          },
+          roadmap: {
+            awareness: {
+              copy: "Notice where you avoid accountability because you fear conflict or judgment.",
+              example: "\"I am protecting their feelings, but I am hurting the standard.\""
+            },
+            structure: {
+              copy: "Create a rhythm of wins and ownership commitments.",
+              example: "\"Every week we name one win, one commitment, and one measurable outcome.\""
+            },
+            consistency: {
+              copy: "Hold the same standard every time so accountability feels predictable.",
+              example: "\"Same expectation, same follow-up, same consequence. No surprises.\""
+            }
+          }
+        }
+      ];
+
+      const OPTIONS = [
+        { label: "Strongly Agree", points: 4 },
+        { label: "Agree", points: 3 },
+        { label: "Disagree", points: 2 },
+        { label: "Strongly Disagree", points: 1 }
+      ];
+
+      const state = {
+        screen: "intro",
+        areaId: null,
+        qIndex: 0,
+        answers: []
+      };
+
+      function $(html){
+        const t = document.createElement("template");
+        t.innerHTML = html.trim();
+        return t.content.firstElementChild;
+      }
+
+      function render(){
+        app.innerHTML = "";
+        if (state.screen === "intro") return renderIntro();
+        if (state.screen === "pick") return renderPick();
+        if (state.screen === "quiz") return renderQuiz();
+        if (state.screen === "calc") return renderCalc();
+        if (state.screen === "results") return renderResults();
+      }
+
+      function setScreen(name){
+        state.screen = name;
+        render();
+      }
+
+      function getArea(){
+        return AREAS.find(a => a.id === state.areaId);
+      }
+
+      function renderIntro(){
+        const el = $(
+          `<section class="card">
+            <h1>What&rsquo;s the real leadership issue draining your energy right now?</h1>
+            <p class="muted">
+              Most leaders do not struggle because they lack skill. They struggle because one invisible issue keeps showing up.
+              This short assessment helps you name it and shows you a clear path forward.
+            </p>
+            <div class="btnrow">
+              <button class="primary" id="startBtn">Start the assessment</button>
+              <button class="ghost" id="previewBtn">Preview the five areas</button>
+            </div>
+          </section>`
+        );
+        app.appendChild(el);
+
+        el.querySelector("#startBtn").addEventListener("click", () => {
+          setScreen("pick");
+        });
+
+        el.querySelector("#previewBtn").addEventListener("click", () => {
+          setScreen("pick");
+        });
+      }
+
+      function renderPick(){
+        const el = $(
+          `<section class="card">
+            <div class="rowBetween">
+              <div>
+                <h1 style="margin-bottom:8px;">Pick the area that feels most frustrating right now.</h1>
+                <p class="muted" style="margin:0;">Choose one to personalize your path.</p>
+              </div>
+              <div class="pill">Pick one area.</div>
+            </div>
+
+            <div class="tiles" id="tiles"></div>
+
+            <div class="btnrow" style="margin-top:18px;">
+              <button class="ghost" id="backBtn">Back</button>
+            </div>
+          </section>`
+        );
+        app.appendChild(el);
+
+        const tiles = el.querySelector("#tiles");
+        AREAS.forEach(area => {
+          const tile = $(
+            `<div class="tile" role="button" tabindex="0">
+              <div class="title">${escapeHtml(area.title)}</div>
+              <div class="desc">${escapeHtml(area.desc)}</div>
+            </div>`
+          );
+          tile.addEventListener("click", () => beginArea(area.id));
+          tile.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") beginArea(area.id);
+          });
+          tiles.appendChild(tile);
+        });
+
+        el.querySelector("#backBtn").addEventListener("click", () => setScreen("intro"));
+      }
+
+      function beginArea(areaId){
+        state.areaId = areaId;
+        state.qIndex = 0;
+        state.answers = [];
+        setScreen("quiz");
+      }
+
+      function renderQuiz(){
+        const area = getArea();
+        const total = area.questions.length;
+        const q = area.questions[state.qIndex];
+
+        const el = $(
+          `<section class="card">
+            <div class="topline">
+              <div>
+                <h2 style="margin:0 0 2px;">${escapeHtml(area.title)}</h2>
+                <p class="muted" style="margin:0;">One question at a time.</p>
+              </div>
+              <div class="pill">Question ${state.qIndex + 1} of ${total}</div>
+            </div>
+
+            <div class="progress" aria-hidden="true"><div class="bar" id="bar"></div></div>
+
+            <h1 style="font-size:26px; line-height:1.18; margin-top:0;">${escapeHtml(q)}</h1>
+
+            <div class="choices" id="choices"></div>
+
+            <div class="btnrow" style="margin-top:16px;">
+              <button class="ghost" id="backBtn">Back</button>
+              <button class="primary disabled" id="nextBtn">Next</button>
+            </div>
+          </section>`
+        );
+
+        app.appendChild(el);
+
+        const bar = el.querySelector("#bar");
+        const pct = Math.round((state.qIndex / total) * 100);
+        bar.style.width = pct + "%";
+
+        const choices = el.querySelector("#choices");
+        let selectedPoints = null;
+
+        OPTIONS.forEach(opt => {
+          const c = $(
+            `<div class="choice" role="button" tabindex="0">
+              <div>
+                <div class="label">${escapeHtml(opt.label)}</div>
+                <div class="muted" style="margin-top:4px; font-size:12px;">${opt.points} point${opt.points === 1 ? "" : "s"}</div>
+              </div>
+              <div class="points">${opt.points}</div>
+            </div>`
+          );
+
+          const pick = () => {
+            selectedPoints = opt.points;
+            [...choices.children].forEach(x => x.classList.remove("selected"));
+            c.classList.add("selected");
+            el.querySelector("#nextBtn").classList.remove("disabled");
+          };
+
+          c.addEventListener("click", pick);
+          c.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") pick();
+          });
+
+          choices.appendChild(c);
+        });
+
+        el.querySelector("#backBtn").addEventListener("click", () => {
+          if (state.qIndex === 0) {
+            setScreen("pick");
+            return;
+          }
+          state.qIndex -= 1;
+          state.answers.pop();
+          setScreen("quiz");
+        });
+
+        el.querySelector("#nextBtn").addEventListener("click", () => {
+          if (selectedPoints == null) return;
+
+          state.answers.push(selectedPoints);
+
+          if (state.qIndex < total - 1){
+            state.qIndex += 1;
+            setScreen("quiz");
+          } else {
+            setScreen("calc");
+          }
+        });
+      }
+
+      function renderCalc(){
+        const area = getArea();
+
+        const el = $(
+          `<section class="card center">
+            <h1 style="margin-bottom:10px;">Tabulating your results...</h1>
+            <p class="muted">
+              You are about to see:
+              <br>- What&rsquo;s really happening beneath the surface
+              <br>- Why this pattern feels heavier than it should
+              <br>- A clear, practical roadmap forward
+            </p>
+
+            <div class="spinnerRow" aria-hidden="true">
+              <div class="spinner"></div>
+              <div class="muted">Preparing your ${escapeHtml(area.title)} profile</div>
+            </div>
+
+            <div class="btnrow" style="margin-top:18px;">
+              <button class="ghost" id="backBtn">Back</button>
+              <button class="primary" id="viewBtn">View my results</button>
+            </div>
+          </section>`
+        );
+        app.appendChild(el);
+
+        el.querySelector("#backBtn").addEventListener("click", () => {
+          state.qIndex = Math.max(0, getArea().questions.length - 1);
+          setScreen("quiz");
+        });
+
+        el.querySelector("#viewBtn").addEventListener("click", () => setScreen("results"));
+      }
+
+      function renderResults(){
+        const area = getArea();
+        const totalPoints = state.answers.reduce((a,b)=>a+b,0);
+        const maxPoints = area.questions.length * 4;
+        const pct = Math.round((totalPoints / maxPoints) * 100);
+
+        const tier = pct >= 75 ? "high" : (pct >= 50 ? "mid" : "low");
+        const res = area.results[tier];
+
+        const profileTag = tier === "high"
+          ? "High Strain"
+          : (tier === "mid" ? "Engaged but Strained" : "Stable with Opportunity");
+
+        const el = $(
+          `<section class="card" style="background:var(--card2);">
+            <div class="rowBetween">
+              <div>
+                <h1 class="resultHeadline">${escapeHtml(res.headline)}</h1>
+                <p class="muted" style="margin:0;">Here is what your answers suggest in the area of ${escapeHtml(area.title)}.</p>
+              </div>
+              <div class="pill">${escapeHtml(profileTag)}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>What&rsquo;s really happening</h2>
+            <p>${escapeHtml(res.happening)}</p>
+
+            <div class="divider"></div>
+
+            <h2>Why this feels exhausting</h2>
+            <p>${escapeHtml(res.exhausting)}</p>
+
+            <div class="divider"></div>
+
+            <h2>The hidden cost</h2>
+            <p>${escapeHtml(res.cost)}</p>
+
+            <div class="callout">
+              <h3>One thing you can do immediately</h3>
+              <p style="margin-bottom:10px;"><strong>${escapeHtml(area.quickFix.shift)}</strong></p>
+              <p style="margin-bottom:10px;"><span class="muted">Quick fix thought:</span> ${escapeHtml(area.quickFix.thought)}</p>
+              <p class="muted">${escapeHtml(area.quickFix.why)}</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Your personal roadmap</h2>
+            <div class="roadmap">
+              <div class="step">
+                <div class="kicker">Awareness</div>
+                <p class="copy">${escapeHtml(area.roadmap.awareness.copy)}</p>
+                <p class="example">${escapeHtml(area.roadmap.awareness.example)}</p>
+              </div>
+              <div class="step">
+                <div class="kicker">Structure</div>
+                <p class="copy">${escapeHtml(area.roadmap.structure.copy)}</p>
+                <p class="example">${escapeHtml(area.roadmap.structure.example)}</p>
+              </div>
+              <div class="step">
+                <div class="kicker">Consistency</div>
+                <p class="copy">${escapeHtml(area.roadmap.consistency.copy)}</p>
+                <p class="example">${escapeHtml(area.roadmap.consistency.example)}</p>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <h2>Next step</h2>
+            <p class="muted" style="margin-bottom:14px;">
+              If you want a repeatable system to solve this long term, <strong>MANAGEx</strong> is designed to build clarity, structure, and confident leadership behaviors that scale.
+            </p>
+
+            <div class="btnrow">
+              <a class="btn primary" id="ctaBtn" href="#" target="_blank" rel="noopener">Explore MANAGEx</a>
+              <button class="ghost" id="restartBtn">Restart</button>
+            </div>
+
+            <div class="footer-logo">
+              <img
+                src="https://www.xinnix.com/hubfs/XINNIX_Logo_Full_white-1.svg"
+                alt="XINNIX"
+              />
+            </div>
+          </section>`
+        );
+        app.appendChild(el);
+
+        const MANAGEX_URL = "https://example.com/managex";
+        el.querySelector("#ctaBtn").setAttribute("href", MANAGEX_URL);
+
+        el.querySelector("#restartBtn").addEventListener("click", () => {
+          state.screen = "intro";
+          state.areaId = null;
+          state.qIndex = 0;
+          state.answers = [];
+          render();
+        });
+      }
+
+      function escapeHtml(str){
+        return String(str)
+          .replaceAll("&","&amp;")
+          .replaceAll("<","&lt;")
+          .replaceAll(">","&gt;")
+          .replaceAll('"',"&quot;")
+          .replaceAll("'","&#039;");
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>
 
             <div class="btnrow" style="margin-top:18px;">
               <button class="ghost" id="backBtn">Back</button>
